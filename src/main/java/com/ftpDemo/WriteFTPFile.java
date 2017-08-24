@@ -17,11 +17,14 @@ public class WriteFTPFile {
     private Logger logger = Logger.getLogger(WriteFTPFile.class);
 
     /**
-     * 本地上传文件到FTP服务器
      *
-     * @param ftpPath
-     *            远程文件路径FTP
-     * @throws IOException
+     * @param ftpPath       ftp服务器文件路径
+     * @param ftpUserName   ftp登录用户名
+     * @param ftpPassword   ftp登录用户密码
+     * @param ftpHost       ftp域名
+     * @param ftpPort       端口名
+     * @param fileContent   要写的内容
+     * @param writeTempFielPath  本地文件路径
      */
     public void upload(String ftpPath, String ftpUserName, String ftpPassword,
                        String ftpHost, int ftpPort, String fileContent,

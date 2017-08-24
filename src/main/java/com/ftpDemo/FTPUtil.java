@@ -1,6 +1,6 @@
 package com.ftpDemo;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.SocketException;
 
 import org.apache.commons.net.ftp.FTPClient;
@@ -42,4 +42,5 @@ public class FTPUtil {
         }
         return ftpClient;
     }
+
 }

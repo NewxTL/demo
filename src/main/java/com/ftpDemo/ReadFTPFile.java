@@ -22,8 +22,8 @@ public class ReadFTPFile {
      * @param ftpPath ftp需要读取文件的绝对路径
      * @param ftpHost ftp服务器域名
      * @param ftpPort ftp服务器密码
-     * @param fileName
-     * @param enCoding
+     * @param fileName 文件名
+     * @param enCoding 文件编码格式
      * @return
      */
     public String readConfigFileForFTP(String ftpUserName, String ftpPassword,
