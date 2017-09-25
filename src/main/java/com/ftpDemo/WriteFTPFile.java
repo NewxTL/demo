@@ -1,11 +1,6 @@
 package com.ftpDemo;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
@@ -18,7 +13,7 @@ public class WriteFTPFile {
 
     /**
      *
-     * @param ftpPath       ftp服务器文件路径
+     * @param remoteFileName  ftp服务器文件路径
      * @param ftpUserName   ftp登录用户名
      * @param ftpPassword   ftp登录用户密码
      * @param ftpHost       ftp域名
@@ -26,7 +21,7 @@ public class WriteFTPFile {
      * @param fileContent   要写的内容
      * @param writeTempFielPath  本地文件路径
      */
-    public void upload(String ftpPath, String ftpUserName, String ftpPassword,
+    public void upload(String remoteFileName, String ftpUserName, String ftpPassword,
                        String ftpHost, int ftpPort, String fileContent,
                        String writeTempFielPath) {
         FTPClient ftpClient = null;
@@ -39,11 +34,13 @@ public class WriteFTPFile {
             // 设置以二进制流的方式传输
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             // 对远程目录的处理
-            String remoteFileName = ftpPath;
-            if (ftpPath.contains("/")) {
-                remoteFileName = ftpPath
-                        .substring(ftpPath.lastIndexOf("/") + 1);
-            }
+//            String remoteFileName = ftpPath;
+//            if (writeTempFielPath.contains("/")) {
+//                logger.info("path: " + ftpPath);
+//                remoteFileName = ftpPath
+//                        .substring(ftpPath.lastIndexOf("/") + 1);
+//                logger.info("remoteFileName: " + remoteFileName);
+//            }
             // FTPFile[] files = ftpClient.listFiles(new
             // String(remoteFileName));
             // 先把文件写在本地。在上传到FTP上最后在删除
@@ -55,7 +52,7 @@ public class WriteFTPFile {
                 ftpClient.storeFile(remoteFileName, in);
                 in.close();
                 logger.info("上传文件" + remoteFileName + "到FTP成功!");
-                f.delete();
+//                f.delete();
             } else {
                 logger.info("写文件失败!");
             }
@@ -78,7 +75,7 @@ public class WriteFTPFile {
     public boolean write(String fileName, String fileContext,
                          String writeTempFielPath) {
         try {
-            logger.info("开始写配置文件");
+            logger.info("开始写本地数据文件");
             File f = new File(writeTempFielPath + "/" + fileName);
             if(!f.exists()){
                 if(!f.createNewFile()){
